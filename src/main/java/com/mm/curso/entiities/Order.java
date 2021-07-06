@@ -1,8 +1,10 @@
 package com.mm.curso.entiities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mm.curso.entiities.enums.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
@@ -20,6 +22,7 @@ public class Order implements Serializable {
     private long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
+    private Integer orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -28,8 +31,9 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Instant moment, User client) {
+    public Order(Instant moment, OrderStatus orderStatus, User client) {
         this.moment = moment;
+        this.orderStatus = orderStatus.getCode();
         this.client = client;
     }
 }
