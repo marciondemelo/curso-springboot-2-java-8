@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -27,6 +28,19 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     public Order() {
     }
