@@ -1,5 +1,6 @@
 package com.mm.curso.entiities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,19 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     @Getter
     private Set<Category> categories = new HashSet<>();
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
+    @JsonIgnore
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items){
+            set.add(x.getId().getOrder());
+        }
+        return set;
+    }
 
     public Product() {
     }
