@@ -27,6 +27,9 @@ public class Order implements Serializable {
     private Instant moment;
     private Integer orderStatus;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;

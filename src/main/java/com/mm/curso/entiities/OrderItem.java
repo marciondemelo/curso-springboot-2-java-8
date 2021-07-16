@@ -5,9 +5,7 @@ import com.mm.curso.entiities.pk.OrderItemPK;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -24,6 +22,7 @@ public class OrderItem implements Serializable {
     private Integer quantity;
     private Double price;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     public Product getProduct() {
         return id.getProduct();
     }

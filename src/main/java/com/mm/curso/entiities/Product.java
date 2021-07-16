@@ -30,7 +30,7 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     @Getter
     private Set<Category> categories = new HashSet<>();
-    
+
     @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
