@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mm.curso.entiities.enums.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
-import org.omg.PortableInterceptor.INACTIVE;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +35,14 @@ public class Order implements Serializable {
     @Getter
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
+
+    public Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem item : items) {
+            sum += item.getSubTotal();
+        }
+        return sum;
+    }
 
     @Override
     public boolean equals(Object o) {
