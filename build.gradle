@@ -6,9 +6,9 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
-
 	}
 }
+
 
 plugins {
 	id 'org.springframework.boot' version '2.5.2'
@@ -39,4 +39,11 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.mm.curso.CursoApplication'
+	}
 }
