@@ -20,6 +20,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.h2database:h2:1.4.200'
+	implementation 'org.postgresql:postgresql:42.2.23.jre7'
 }
 
 test {
