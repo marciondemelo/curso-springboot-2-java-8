@@ -1,15 +1,19 @@
+buildscript {
+	repositories {
+		maven {
+			url 'https://repo1.maven.org/maven2/'
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-}
-
-jar {
-	manifest {
-		attributes(
-				'Main-Class': 'com.mm.curso.CursoApplication'
-		)
-	}
 }
 
 group = 'com.mm'
@@ -30,6 +34,8 @@ dependencies {
 	implementation 'com.h2database:h2:1.4.200'
 	implementation 'org.postgresql:postgresql:42.2.23.jre7'
 }
+
+
 
 test {
 	useJUnitPlatform()
